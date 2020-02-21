@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    private Transform t;
     [SerializeField] private float speed = 10f;
 
     // Start is called before the first frame update
@@ -13,6 +14,7 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        t = GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -20,6 +22,7 @@ public class Movement : MonoBehaviour
     {
         float vMovement = Input.GetAxis("Vertical");
         float hMovement = Input.GetAxis("Horizontal");
+
 
         if (hMovement < 0)
         {
@@ -29,14 +32,13 @@ public class Movement : MonoBehaviour
         {
             sr.flipY = false;
         }
+        
 
         rb.velocity = new Vector2(hMovement * speed, vMovement * speed);
-        //rb.AddForce(new Vector2(hMovement * speed, vMovement * speed));
 
         float yValue = Mathf.Clamp(rb.position.y, -4.75f, 4.75f);
         float xValue = Mathf.Clamp(rb.position.x, -8.9f, 8.9f);
 
         rb.position = new Vector2(xValue, yValue);
-        //rb.AddForce(new Vector2(hMovement * speed * -1, vMovement * speed * -1));
     }
 }

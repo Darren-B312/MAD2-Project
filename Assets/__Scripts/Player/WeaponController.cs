@@ -37,6 +37,7 @@ public class WeaponController : MonoBehaviour
         Bullet bullet = Instantiate(bulletPrefab, bulletParent.transform);
         bullet.transform.position = transform.position;
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        SpriteRenderer sr = bullet.GetComponent<SpriteRenderer>();
 
         switch (direction)
         {
@@ -45,6 +46,7 @@ public class WeaponController : MonoBehaviour
                 break;
             case 2:
                 rb.velocity = Vector2.left * bulletSpeed;
+                sr.flipY = true;
                 break;
 
         }
