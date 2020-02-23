@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     private SpriteRenderer sr;
     private Transform t;
     [SerializeField] private float speed = 10f;
+    //[SerializeField] private int boostFactor = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,6 @@ public class Movement : MonoBehaviour
         float vMovement = Input.GetAxis("Vertical");
         float hMovement = Input.GetAxis("Horizontal");
 
-
         if (hMovement < 0)
         {
             sr.flipY = true;
@@ -32,9 +32,17 @@ public class Movement : MonoBehaviour
         {
             sr.flipY = false;
         }
-        
 
-        rb.velocity = new Vector2(hMovement * speed, vMovement * speed);
+        //if(didBoost) // TODO: better dash implementation - https://www.youtube.com/watch?v=w4YV8s9Wi3w
+        //{
+        //    rb.velocity = new Vector2(hMovement * speed * boostFactor, vMovement * speed);
+        //}
+        //else
+        //{
+        //    rb.velocity = new Vector2(hMovement * speed, vMovement * speed);
+        //}
+
+
 
         float yValue = Mathf.Clamp(rb.position.y, -4.75f, 4.75f);
         float xValue = Mathf.Clamp(rb.position.x, -8.9f, 8.9f);
