@@ -130,9 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff16ac83c1f0dea40bbe78652f43b0a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 50
+  dashSpeed: 100
   dashTime: 0
-  startDashTime: 0.2
+  startDashTime: 2
 --- !u!1 &1395671588
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +306,11 @@ PrefabInstance:
       propertyPath: m_FlipY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6410228828334988634, guid: 732037ca4c08a814fbbbf4fa9ea3be32,
+        type: 3}
+      propertyPath: bulletSpeed
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6410228828334988635, guid: 732037ca4c08a814fbbbf4fa9ea3be32,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -360,6 +365,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6410228828334988710, guid: 732037ca4c08a814fbbbf4fa9ea3be32,
+        type: 3}
+      propertyPath: speed
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6410228828334988711, guid: 732037ca4c08a814fbbbf4fa9ea3be32,
         type: 3}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] private Bullet bulletPrefab;
-    [SerializeField] private float bulletSpeed = 20.0f;
+    [SerializeField] private float bulletSpeed = 50f;
 
     private GameObject bulletParent;
 
