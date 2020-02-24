@@ -12,10 +12,10 @@ public class WeaponController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bulletParent = GameObject.Find("BulletParent");
+        bulletParent = GameObject.Find("Bullets");
         if (!bulletParent)
         {
-            bulletParent = new GameObject("BulletParent");
+            bulletParent = new GameObject("Bullets");
         }
     }
 

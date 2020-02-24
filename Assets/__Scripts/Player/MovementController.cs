@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class MovementController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private SpriteRenderer sr;
