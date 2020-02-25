@@ -7,7 +7,8 @@ public class MovementController : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
 
-    [SerializeField] private float speed = 10.0f;
+    [SerializeField] private float vSpeed = 15.0f;
+    [SerializeField] private float hSpeed = 10.0f;
 
     [SerializeField] private int dashFactor = 5;
     [SerializeField] private float startDashTime = 0.1f;
@@ -27,43 +28,59 @@ public class MovementController : MonoBehaviour
         float vMovement = Input.GetAxis("Vertical");
         float hMovement = Input.GetAxis("Horizontal");
 
-        if(Input.GetKeyDown(KeyCode.LeftShift) && hMovement != 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && hMovement != 0)
         {
             dash = true;
             dashTime = startDashTime;
         }
 
-        if(dash)
+        if (dash)
         {
-            dashTime -= Time.deltaTime;
-
-            if(dashTime <= 0)
-            {
-                dash = false;
-            }
-            else
-            {
-                rb.velocity = new Vector2(hMovement * speed * dashFactor, vMovement * speed);
-            }
-        } 
+            dashMovement(hMovement, vMovement);
+        }
         else
         {
-            rb.velocity = new Vector2(hMovement * speed, vMovement * speed);
-        }
-     
-
-        if (hMovement < 0)
-        {
-            sr.flipY = true;
-        }
-        else if (hMovement > 0)
-        {
-            sr.flipY = false;
+            rb.velocity = new Vector2(hMovement * hSpeed, vMovement * vSpeed);
         }
 
+
+        sr.flipY = flipSprite(hMovement, vMovement);
+
+        clampPosition();
+
+    }
+
+    private void clampPosition()
+    {
         float yValue = Mathf.Clamp(rb.position.y, -4.75f, 4.75f);
         float xValue = Mathf.Clamp(rb.position.x, -8.9f, 8.9f);
 
         rb.position = new Vector2(xValue, yValue);
     }
+
+    private void dashMovement(float hMovement, float vMovement)
+    {
+        dashTime -= Time.deltaTime;
+
+        if (dashTime <= 0)
+        {
+            dash = false;
+        }
+        else
+        {
+            rb.velocity = new Vector2(hMovement * hSpeed * dashFactor, vMovement * vSpeed);
+        }
+    }
+
+    private bool flipSprite(float hMovement, float vMovement)
+    {
+        if (hMovement < 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+
 }
