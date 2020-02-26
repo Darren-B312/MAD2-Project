@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponController : MonoBehaviour
+public class PlayerWeaponController : MonoBehaviour
 {
-    [SerializeField] private Bullet bulletPrefab;
+    [SerializeField] private Projectile bulletPrefab;
     [SerializeField] private float bulletSpeed = 50f;
 
     private GameObject bulletParent;
@@ -34,7 +34,7 @@ public class WeaponController : MonoBehaviour
 
     private void Fire(int direction)
     {
-        Bullet bullet = Instantiate(bulletPrefab, bulletParent.transform);
+        Projectile bullet = Instantiate(bulletPrefab, bulletParent.transform);
         bullet.transform.position = transform.position;
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         SpriteRenderer sr = bullet.GetComponent<SpriteRenderer>();
