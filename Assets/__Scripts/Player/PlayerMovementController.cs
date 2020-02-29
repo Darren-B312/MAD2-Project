@@ -6,6 +6,7 @@ public class PlayerMovementController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    private Transform t;
 
     [SerializeField] private float vSpeed = 15.0f;
     [SerializeField] private float hSpeed = 10.0f;
@@ -21,6 +22,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        t = GetComponent<Transform>();
     }
 
     void Update()
@@ -43,6 +45,7 @@ public class PlayerMovementController : MonoBehaviour
             rb.velocity = new Vector2(hMovement * hSpeed, vMovement * vSpeed);
         }
 
+        //t.up = rb.velocity.normalized;
 
         sr.flipY = flipSprite(hMovement, vMovement);
 
@@ -81,6 +84,5 @@ public class PlayerMovementController : MonoBehaviour
 
         return false;
     }
-
 
 }
