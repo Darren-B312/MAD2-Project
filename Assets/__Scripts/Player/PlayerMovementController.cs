@@ -45,8 +45,6 @@ public class PlayerMovementController : MonoBehaviour
             rb.velocity = new Vector2(hMovement * hSpeed, vMovement * vSpeed);
         }
 
-        //t.up = rb.velocity.normalized;
-
         sr.flipY = flipSprite(hMovement, vMovement);
 
         clampPosition();
