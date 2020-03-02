@@ -11,15 +11,4 @@ public class Projectile : MonoBehaviour
     {
         Destroy(gameObject); // remove bullet from hierarchy when it leaves the camera view
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        var enemy = collision.GetComponent<Enemy>();
-
-        if (enemy)
-        {
-            Destroy(enemy.gameObject);
-            Destroy(gameObject);
-        }
-    }
 }
