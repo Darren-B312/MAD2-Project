@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] private float speed = 5.0f;
-    private Rigidbody2D rb;
+    [SerializeField] private float speed = 10f;
+    private Transform target;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     void Update()
     {
-        rb.velocity = new Vector2(-1*speed, 0);
+        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime );
     }
 }

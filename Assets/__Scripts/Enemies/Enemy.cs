@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
 
         if (player)
         {
-            Destroy(player.gameObject);
+            //Destroy(player.gameObject);
         }
 
         if (bullet)

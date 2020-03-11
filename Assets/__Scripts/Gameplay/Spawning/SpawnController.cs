@@ -16,18 +16,18 @@ public class SpawnController : MonoBehaviour
     private const string SPAWN_ENEMY_METHOD = "SpawnEnemy";
 
 
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //    enemyParent = GameObject.Find("Enemies");
-    //    if(!enemyParent)
-    //    {
-    //        enemyParent = new GameObject("Enemies");
-    //    }
+    //Start is called before the first frame update
+    void Start()
+    {
+        enemyParent = GameObject.Find("Enemies");
+        if (!enemyParent)
+        {
+            enemyParent = new GameObject("Enemies");
+        }
 
-    //    spawnPoints = GetComponentsInChildren<SpawnPoint>();
-    //    SpawnEnemyWaves();
-    //}
+        spawnPoints = GetComponentsInChildren<SpawnPoint>();
+        SpawnEnemyWaves();
+    }
 
     private void SpawnEnemyWaves()
     {
