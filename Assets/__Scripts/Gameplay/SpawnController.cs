@@ -7,14 +7,13 @@ public class SpawnController : MonoBehaviour
     [SerializeField] private Enemy enemyPrefab;
     [SerializeField] private float spawnDelay = 10f;
     [SerializeField] private float spawnInterval = 50f;
-
     private IList<SpawnPoint> spawnPoints;
     private Stack<SpawnPoint> spawnStack;
-
     private GameObject enemyParent;
-
     private const string SPAWN_ENEMY_METHOD = "SpawnEnemy";
 
+    public delegate void EnemySpawned();
+    public static event EnemySpawned EnemySpawnedEvent;
 
     //Start is called before the first frame update
     void Start()
@@ -26,24 +25,35 @@ public class SpawnController : MonoBehaviour
         }
 
         spawnPoints = GetComponentsInChildren<SpawnPoint>();
-        SpawnEnemyWaves();
+
+        spawnStack = ListUtils.CreateShuffledStack(spawnPoints);
+        EnableSpawning();
     }
 
-    private void SpawnEnemyWaves()
+    public void EnableSpawning()
     {
-        spawnStack = ListUtils.CreateShuffledStack(spawnPoints);
         InvokeRepeating(SPAWN_ENEMY_METHOD, spawnDelay, spawnInterval);
+    }
+    public void DisableSpawning()
+    {
+        CancelInvoke(SPAWN_ENEMY_METHOD);
     }
 
     private void SpawnEnemy()
     {
-        if(spawnStack.Count == 0)
+        if (spawnStack.Count == 0)
         {
             spawnStack = ListUtils.CreateShuffledStack(spawnPoints);
         }
         var enemy = Instantiate(enemyPrefab, enemyParent.transform);
         var sp = spawnStack.Pop();
         enemy.transform.position = sp.transform.position;
+        PublishEnemySpawnedEvent();
+    }
+
+    public void PublishEnemySpawnedEvent()
+    {
+        EnemySpawnedEvent?.Invoke();
     }
 
 }
