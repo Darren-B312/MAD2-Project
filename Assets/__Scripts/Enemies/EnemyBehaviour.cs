@@ -8,8 +8,8 @@ public class EnemyBehaviour : MonoBehaviour
     private Transform target;
 
     void Start()
-    {
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+    { 
+            target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();  
     }
 
     void Update()
@@ -18,4 +18,6 @@ public class EnemyBehaviour : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
     }
-}
+
+
+} 

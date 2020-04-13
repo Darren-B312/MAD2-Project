@@ -51,7 +51,7 @@ public class GameController : MonoBehaviour
 
         var enemies = GameObject.Find("Enemies").gameObject.GetComponentsInChildren<EnemyBehaviour>(); // get a list of all enemies 
         foreach(EnemyBehaviour e in enemies) {
-            Destroy(e); // disable each enemies' movement behaviour
+            Destroy(e.gameObject); // disable each enemies' movement behaviour
         }
 
         GameObject.Find("SpawnPoints").GetComponent<SpawnController>().DisableSpawning(); // stop spawning new enemies
