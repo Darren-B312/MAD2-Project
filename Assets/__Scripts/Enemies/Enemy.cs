@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
+
+    public int DamageValue { get { return damageValue; } }
+
+    [SerializeField] private int damageValue = 1;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var player = collision.GetComponent<PlayerMovementController>();
@@ -12,6 +18,7 @@ public class Enemy : MonoBehaviour
         if (player)
         {
             //Destroy(player.gameObject);
+            Destroy(gameObject);
         }
 
         if (bullet)
