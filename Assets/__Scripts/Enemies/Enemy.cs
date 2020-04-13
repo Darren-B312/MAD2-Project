@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-
     public int DamageValue { get { return damageValue; } }
 
     [SerializeField] private int damageValue = 1;
@@ -17,8 +16,7 @@ public class Enemy : MonoBehaviour
 
         if (player)
         {
-            //Destroy(player.gameObject);
-            Destroy(gameObject);
+            Destroy(gameObject); 
         }
 
         if (bullet)
