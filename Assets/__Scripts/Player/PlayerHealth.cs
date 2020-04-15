@@ -10,6 +10,8 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI healthText;
 
+    private CameraShake cameraShake;
+
 
 
     public int CurrentHealth { get { return currentHealth; } }
@@ -21,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
         var enemy = collision.GetComponent<Enemy>();
         if(enemy && FindObjectOfType<PlayerMovementController>().Dash != true)
         {
+            cameraShake.Shake();
             currentHealth -= enemy.DamageValue;
             //Debug.Log($"Player Health: = {currentHealth}");
             healthText.text = $"HP: {currentHealth*10}%";
@@ -32,5 +35,6 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = startHealth;
+        cameraShake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<CameraShake>();
     }
 }
