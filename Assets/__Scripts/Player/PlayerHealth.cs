@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int startHealth = 1;
     private int currentHealth { get; set; }
+
+    [SerializeField] private TextMeshProUGUI healthText;
+
 
 
     public int CurrentHealth { get { return currentHealth; } }
@@ -19,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth -= enemy.DamageValue;
             //Debug.Log($"Player Health: = {currentHealth}");
+            healthText.text = $"HP: {currentHealth*10}%";
         }
 
     }

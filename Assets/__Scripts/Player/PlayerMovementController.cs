@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
 {
     public bool Dash { get; private set; }
+
+    [SerializeField] private TextMeshProUGUI cooldownText;
 
 
     private Rigidbody2D rb;
@@ -63,10 +66,15 @@ public class PlayerMovementController : MonoBehaviour
         if(!dashReady)
         {
             dashCD -= Time.deltaTime;
+            //Debug.Log(dashCD);
+            var dashpercent = 100 - ((dashCD / cooldown) * 100); // invert percentage for style on UI so it can charge from 0 to 100%
+            cooldownText.text = $"Boosters: {dashpercent.ToString("0")}%";
+
         }
 
-        if(dashCD <= 0)
+        if (dashCD <= 0)
         {
+            cooldownText.text = $"Boost: 100%";
             dashReady = true;
         }
 
