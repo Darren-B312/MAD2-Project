@@ -8,13 +8,19 @@ public class PlayerMovementController : MonoBehaviour
     private SpriteRenderer sr;
     private Transform t;
 
-    [SerializeField] private float vSpeed = 15.0f;
+    [SerializeField] private float vSpeed = 12.5f;
     [SerializeField] private float hSpeed = 10.0f;
 
-    [SerializeField] private int dashFactor = 5;
+    [SerializeField] private int dashFactor = 7;
     [SerializeField] private float startDashTime = 0.1f;
     private float dashTime;
     private bool dash;
+
+    private bool dashReady = true;
+    [SerializeField] private float cooldown = 5f;
+    private float dashCD;
+
+
 
 
 
@@ -30,10 +36,15 @@ public class PlayerMovementController : MonoBehaviour
         float vMovement = Input.GetAxis("Vertical");
         float hMovement = Input.GetAxis("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && hMovement != 0)
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && hMovement != 0 && dashReady)
         {
             dash = true;
             dashTime = startDashTime;
+
+            dashReady = false;
+            dashCD = cooldown;
+            //nextDashTime = Time.time + dashCooldown;  // https://www.youtube.com/watch?v=NX8cX3osMFc
         }
 
         if (dash)
@@ -47,7 +58,20 @@ public class PlayerMovementController : MonoBehaviour
 
         sr.flipY = flipSprite(hMovement, vMovement);
 
+
+        if(!dashReady)
+        {
+            dashCD -= Time.deltaTime;
+        }
+
+        if(dashCD <= 0)
+        {
+            dashReady = true;
+            Debug.Log("Dash Ready!");
+        }
+
         clampPosition();
+
 
     }
 

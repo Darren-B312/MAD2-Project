@@ -1963,6 +1963,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2026512468106011163, guid: 732037ca4c08a814fbbbf4fa9ea3be32,
+        type: 3}
+      propertyPath: dashFactor
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026512468106011163, guid: 732037ca4c08a814fbbbf4fa9ea3be32,
+        type: 3}
+      propertyPath: dashCooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026512468106011163, guid: 732037ca4c08a814fbbbf4fa9ea3be32,
+        type: 3}
+      propertyPath: cooldown
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3822558682801066549, guid: 732037ca4c08a814fbbbf4fa9ea3be32,
         type: 3}
       propertyPath: m_IsTrigger
