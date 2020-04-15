@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
     private GameObject gameOverlayUI;
+    [SerializeField] private TextMeshProUGUI scoreText;
+
     private GameObject player;
     private bool gameOver = false;
+
     [SerializeField] private int enemiesPerWave = 10;
     private int enemiesRemaining;
     private int waveNumber = 1;
+
     private int playerScore = 0;
 
 
@@ -77,7 +82,8 @@ public class GameController : MonoBehaviour
     }
     private void UpdateScore()
     {
-        Debug.Log("Score: " + playerScore);
+        //Debug.Log("Score: " + playerScore);
+        scoreText.text = $"Score: {playerScore}";
     }
 
     private void SpawnController_OnEnemySpawnedEvent()
