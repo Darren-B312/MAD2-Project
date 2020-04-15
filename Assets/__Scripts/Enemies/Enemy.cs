@@ -11,6 +11,9 @@ public class Enemy : MonoBehaviour
     public delegate void EnemyKilled(Enemy enemy);
     public static EnemyKilled EnemyKilledEvent;
 
+    public delegate void DashKill(Enemy enemy);
+    public static DashKill EnemyKilledByDashEvent;
+
 
     [SerializeField] private int damageValue = 1;
     [SerializeField] private int scoreValue = 1;
@@ -23,6 +26,11 @@ public class Enemy : MonoBehaviour
 
         if (player)
         {
+            if(FindObjectOfType<PlayerMovementController>().Dash == true)
+            {
+                PublishEnemyKilledByDashEvent();
+            }
+
             Destroy(gameObject); 
         }
 
@@ -41,9 +49,11 @@ public class Enemy : MonoBehaviour
 
     private void PublishEnemyKilledEvent()
     {
-        if(EnemyKilledEvent != null)
-        {
-            EnemyKilledEvent(this);
-        }
+        EnemyKilledEvent?.Invoke(this);
+    }
+
+    private void PublishEnemyKilledByDashEvent()
+    {
+        EnemyKilledByDashEvent?.Invoke(this);
     }
 }

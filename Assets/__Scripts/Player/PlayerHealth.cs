@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int startHealth = 3;
+    [SerializeField] private int startHealth = 1;
     private int currentHealth { get; set; }
 
 
@@ -12,8 +12,10 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
+
         var enemy = collision.GetComponent<Enemy>();
-        if(enemy)
+        if(enemy && FindObjectOfType<PlayerMovementController>().Dash != true)
         {
             currentHealth -= enemy.DamageValue;
             //Debug.Log($"Player Health: = {currentHealth}");

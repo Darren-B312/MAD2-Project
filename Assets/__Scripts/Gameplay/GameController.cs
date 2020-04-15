@@ -72,13 +72,20 @@ public class GameController : MonoBehaviour
     {
         SpawnController.EnemySpawnedEvent += SpawnController_OnEnemySpawnedEvent;
         Enemy.EnemyKilledEvent += OnEnemyKilledEvent;
+        Enemy.EnemyKilledByDashEvent += OnEnemyDashKilledEvent;
     }
     
     private void OnDisable()
     {
         SpawnController.EnemySpawnedEvent -= SpawnController_OnEnemySpawnedEvent;
         Enemy.EnemyKilledEvent -= OnEnemyKilledEvent;
+        Enemy.EnemyKilledByDashEvent -= OnEnemyDashKilledEvent;
+    }
 
+    private void OnEnemyDashKilledEvent(Enemy enemy)
+    {
+        playerScore += enemy.ScoreValue * waveNumber * 10;
+        UpdateScore();
     }
 
     private void OnEnemyKilledEvent(Enemy enemy)

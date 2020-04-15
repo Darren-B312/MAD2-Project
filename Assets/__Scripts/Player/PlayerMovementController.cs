@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
 {
+    public bool Dash { get; private set; }
+
+
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Transform t;
@@ -14,8 +17,6 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private int dashFactor = 7;
     [SerializeField] private float startDashTime = 0.1f;
     private float dashTime;
-    private bool dash;
-
     private bool dashReady = true;
     [SerializeField] private float cooldown = 5f;
     private float dashCD;
@@ -39,7 +40,7 @@ public class PlayerMovementController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && hMovement != 0 && dashReady)
         {
-            dash = true;
+            Dash = true;
             dashTime = startDashTime;
 
             dashReady = false;
@@ -47,7 +48,7 @@ public class PlayerMovementController : MonoBehaviour
             //nextDashTime = Time.time + dashCooldown;  // https://www.youtube.com/watch?v=NX8cX3osMFc
         }
 
-        if (dash)
+        if (Dash)
         {
             dashMovement(hMovement, vMovement);
         }
@@ -67,7 +68,6 @@ public class PlayerMovementController : MonoBehaviour
         if(dashCD <= 0)
         {
             dashReady = true;
-            Debug.Log("Dash Ready!");
         }
 
         clampPosition();
@@ -89,7 +89,7 @@ public class PlayerMovementController : MonoBehaviour
 
         if (dashTime <= 0)
         {
-            dash = false;
+            Dash = false;
         }
         else
         {
