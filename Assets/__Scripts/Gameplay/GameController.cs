@@ -6,6 +6,8 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
+    public int WaveNumer { get { return waveNumber; } }
+
     private GameObject gameOverlayUI;
     [SerializeField] private TextMeshProUGUI scoreText;
 
@@ -22,11 +24,15 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        Debug.Log($"Wave #{waveNumber}");
+
         player = GameObject.FindGameObjectWithTag("Player");
 
         enemiesRemaining = enemiesPerWave;
-
-        gameOverlayUI = FindObjectOfType<Canvas>().transform.GetChild(0).gameObject; // get a handle on the the GameOver screen GameObject
+        
+        // get a handle on the the GameOver screen GameObject
+        gameOverlayUI = FindObjectOfType<Canvas>().transform.GetChild(0).gameObject;
+        
     }
 
     // Update is called once per frame
@@ -77,7 +83,7 @@ public class GameController : MonoBehaviour
 
     private void OnEnemyKilledEvent(Enemy enemy)
     {
-        playerScore += enemy.ScoreValue;
+        playerScore += enemy.ScoreValue * waveNumber;
         UpdateScore();
     }
     private void UpdateScore()
@@ -101,10 +107,14 @@ public class GameController : MonoBehaviour
 
     private IEnumerator SetUpNextWave()
     {
-        yield return new WaitForSeconds(10.0f); // TODO reduce time between enemy waves?
+        yield return new WaitForSeconds(5.0f); // TODO reduce time between enemy waves?
         // play a sound for player to announce next wave
-        enemiesRemaining = enemiesPerWave;
+        enemiesRemaining = enemiesPerWave + waveNumber;
+        Debug.Log($"Enemy count: {enemiesRemaining}");
+
         waveNumber++;
+        Debug.Log($"Wave #{waveNumber}");
+
         EnableSpawning();
     }
 
