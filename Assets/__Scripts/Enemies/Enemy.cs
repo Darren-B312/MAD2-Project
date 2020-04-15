@@ -6,8 +6,15 @@ public class Enemy : MonoBehaviour
 {
 
     public int DamageValue { get { return damageValue; } }
+    public int ScoreValue { get { return scoreValue; } }
+
+    public delegate void EnemyKilled(Enemy enemy);
+    public static EnemyKilled EnemyKilledEvent;
+
 
     [SerializeField] private int damageValue = 1;
+    [SerializeField] private int scoreValue = 1;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,6 +29,7 @@ public class Enemy : MonoBehaviour
         if (bullet)
         {
             Destroy(bullet.gameObject);
+            PublishEnemyKilledEvent();
             Destroy(gameObject);
         }
     }
@@ -29,5 +37,13 @@ public class Enemy : MonoBehaviour
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
+    }
+
+    private void PublishEnemyKilledEvent()
+    {
+        if(EnemyKilledEvent != null)
+        {
+            EnemyKilledEvent(this);
+        }
     }
 }

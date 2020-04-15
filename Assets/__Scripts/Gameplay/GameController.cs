@@ -8,10 +8,10 @@ public class GameController : MonoBehaviour
     private GameObject gameOverlayUI;
     private GameObject player;
     private bool gameOver = false;
-
     [SerializeField] private int enemiesPerWave = 10;
     private int enemiesRemaining;
     private int waveNumber = 1;
+    private int playerScore = 0;
 
 
 
@@ -60,11 +60,24 @@ public class GameController : MonoBehaviour
     private void OnEnable()
     {
         SpawnController.EnemySpawnedEvent += SpawnController_OnEnemySpawnedEvent;
+        Enemy.EnemyKilledEvent += OnEnemyKilledEvent;
     }
     
     private void OnDisable()
     {
         SpawnController.EnemySpawnedEvent -= SpawnController_OnEnemySpawnedEvent;
+        Enemy.EnemyKilledEvent -= OnEnemyKilledEvent;
+
+    }
+
+    private void OnEnemyKilledEvent(Enemy enemy)
+    {
+        playerScore += enemy.ScoreValue;
+        UpdateScore();
+    }
+    private void UpdateScore()
+    {
+        Debug.Log("Score: " + playerScore);
     }
 
     private void SpawnController_OnEnemySpawnedEvent()
@@ -90,7 +103,7 @@ public class GameController : MonoBehaviour
     }
 
     private void DisableSpawning()
-    {
+    { 
         foreach(var spawnpoint in FindObjectsOfType<SpawnController>())
         {
             spawnpoint.DisableSpawning();
