@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
     public int DamageValue { get { return damageValue; } }
     public int ScoreValue { get { return scoreValue; } }
 
@@ -19,6 +18,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int scoreValue = 1;
 
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var player = collision.GetComponent<PlayerMovementController>();
@@ -30,7 +30,6 @@ public class Enemy : MonoBehaviour
             {
                 PublishEnemyKilledByDashEvent();
             }
-
             Destroy(gameObject); 
         }
 

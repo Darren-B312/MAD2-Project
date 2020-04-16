@@ -119,6 +119,9 @@ public class GameController : MonoBehaviour
         enemiesRemaining = enemiesPerWave + waveNumber;
         Debug.Log($"Enemy count: {enemiesRemaining}");
 
+
+        gameObject.GetComponent<AudioSource>().pitch *= 1.01f; // increase pitch by 1% each wave
+        
         waveNumber++;
         Debug.Log($"Wave #{waveNumber}");
 
