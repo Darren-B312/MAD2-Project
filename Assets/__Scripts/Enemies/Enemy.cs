@@ -16,14 +16,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int damageValue = 1;
     [SerializeField] private int scoreValue = 1;
 
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var player = collision.GetComponent<PlayerMovementController>();
         var bullet = collision.GetComponent<Projectile>();
 
-        if (player)
+        if (player) 
         {
             if(FindObjectOfType<PlayerMovementController>().Dash == true)
             {
@@ -32,8 +30,10 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject); 
         }
 
-        if (bullet)
+        if (bullet) // Enemy was hit by a butllet -> dies
         {
+            FindObjectOfType<SoundController>().PlayEnemyDeathSound();
+
             Destroy(bullet.gameObject);
             PublishEnemyKilledEvent();
             Destroy(gameObject);
@@ -54,4 +54,5 @@ public class Enemy : MonoBehaviour
     {
         EnemyKilledByDashEvent?.Invoke(this);
     }
+
 }
