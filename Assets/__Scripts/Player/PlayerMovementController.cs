@@ -37,7 +37,7 @@ public class PlayerMovementController : MonoBehaviour
         float hMovement = Input.GetAxis("Horizontal");
 
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && hMovement != 0 && dashReady)
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.Space) && hMovement != 0 && dashReady))
         {
             FindObjectOfType<SoundController>().PlayPlayerDashSound();
 
@@ -68,6 +68,10 @@ public class PlayerMovementController : MonoBehaviour
             var dashpercent = 100 - ((dashCD / cooldown) * 100); // invert percentage for style on UI so it can charge from 0 to 100%
             cooldownText.text = $"Boost: {dashpercent:0}%";
 
+            if(dashCD <= 0)
+            {
+                FindObjectOfType<SoundController>().PlayPlayerDashReadySound();
+            }
         }
 
         if (dashCD <= 0)

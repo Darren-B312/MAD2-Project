@@ -19,6 +19,7 @@ public class SoundController : MonoBehaviour
 
     private AudioClip[] playerDashSounds;
     int playerDashSoundsCount;
+    private AudioClip playerDashReadySound;
 
     private AudioClip[] playerShootSounds;
 
@@ -43,6 +44,8 @@ public class SoundController : MonoBehaviour
 
         playerDashSounds = Resources.LoadAll<AudioClip>("Audio/PlayerDashSounds");
         playerDashSoundsCount = playerDashSounds.Length;
+
+        playerDashReadySound = Resources.Load<AudioClip>("Audio/sfx_sounds_powerup6");
 
         menuButtonSound = Resources.Load<AudioClip>("Audio/sfx_menu_move3");
     }
@@ -75,5 +78,9 @@ public class SoundController : MonoBehaviour
     public void PlayPlayerDashSound()
     {
         audioSource.PlayOneShot(playerDashSounds[Random.Range(0, playerDashSoundsCount)]);
+    }
+    public void PlayPlayerDashReadySound()
+    {
+        audioSource.PlayOneShot(playerDashReadySound);
     }
 }
