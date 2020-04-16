@@ -18,6 +18,8 @@ public class PlayerHealth : MonoBehaviour
         var enemy = collision.GetComponent<Enemy>();
         if(enemy && FindObjectOfType<PlayerMovementController>().Dash != true)
         {
+            FindObjectOfType<SoundController>().PlayPlayerDamageSound();
+
             cameraShake.Shake();
             currentHealth -= enemy.DamageValue;
             //Debug.Log($"Player Health: = {currentHealth}");

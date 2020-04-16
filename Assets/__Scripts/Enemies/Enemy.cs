@@ -26,6 +26,9 @@ public class Enemy : MonoBehaviour
             if(FindObjectOfType<PlayerMovementController>().Dash == true)
             {
                 PublishEnemyKilledByDashEvent();
+                FindObjectOfType<SoundController>().PlayEnemyScreamSound();
+                FindObjectOfType<SoundController>().PlayEnemyDeathSound();
+
             }
             Destroy(gameObject); 
         }

@@ -34,6 +34,8 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void Fire(int direction)
     {
+        FindObjectOfType<SoundController>().PlayPlayerShootSound();
+
         Projectile bullet = Instantiate(bulletPrefab, bulletParent.transform);
         bullet.transform.position = transform.position;
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();

@@ -39,6 +39,8 @@ public class PlayerMovementController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && hMovement != 0 && dashReady)
         {
+            FindObjectOfType<SoundController>().PlayPlayerDashSound();
+
             Dash = true;
             dashTime = startDashTime;
 
