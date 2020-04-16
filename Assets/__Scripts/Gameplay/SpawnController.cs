@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {
+    public delegate void EnemySpawned();
+    public static event EnemySpawned EnemySpawnedEvent;
+
     [SerializeField] private Enemy enemyPrefab;
     [SerializeField] private float spawnDelay = 10f;
     [SerializeField] private float spawnInterval = 50f;
+
     private IList<SpawnPoint> spawnPoints;
     private Stack<SpawnPoint> spawnStack;
     private GameObject enemyParent;
     private const string SPAWN_ENEMY_METHOD = "SpawnEnemy";
 
-    public delegate void EnemySpawned();
-    public static event EnemySpawned EnemySpawnedEvent;
-
-    //Start is called before the first frame update
     void Start()
     {
         enemyParent = GameObject.Find("Enemies");

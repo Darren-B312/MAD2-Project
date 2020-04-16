@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
     public delegate void DashKill(Enemy enemy);
     public static DashKill EnemyKilledByDashEvent;
 
-
     [SerializeField] private int damageValue = 1;
     [SerializeField] private int scoreValue = 1;
 

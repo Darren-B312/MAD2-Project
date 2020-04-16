@@ -7,9 +7,6 @@ public class PlayerMovementController : MonoBehaviour
 {
     public bool Dash { get; private set; }
 
-    [SerializeField] private TextMeshProUGUI cooldownText;
-
-
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Transform t;
@@ -19,14 +16,13 @@ public class PlayerMovementController : MonoBehaviour
 
     [SerializeField] private int dashFactor = 7;
     [SerializeField] private float startDashTime = 0.1f;
+    [SerializeField] private float cooldown = 5f;
+
+    [SerializeField] private TextMeshProUGUI cooldownText;
+
     private float dashTime;
     private bool dashReady = true;
-    [SerializeField] private float cooldown = 5f;
     private float dashCD;
-
-
-
-
 
     void Start()
     {
@@ -68,7 +64,7 @@ public class PlayerMovementController : MonoBehaviour
             dashCD -= Time.deltaTime;
             //Debug.Log(dashCD);
             var dashpercent = 100 - ((dashCD / cooldown) * 100); // invert percentage for style on UI so it can charge from 0 to 100%
-            cooldownText.text = $"Boosters: {dashpercent.ToString("0")}%";
+            cooldownText.text = $"Boost: {dashpercent:0}%";
 
         }
 
@@ -79,8 +75,6 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         clampPosition();
-
-
     }
 
     private void clampPosition()

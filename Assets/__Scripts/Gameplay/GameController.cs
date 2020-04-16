@@ -8,40 +8,31 @@ public class GameController : MonoBehaviour
 {
     public int WaveNumer { get { return waveNumber; } }
 
-    private GameObject gameOverlayUI;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private int enemiesPerWave = 10;
 
+    private GameObject gameOverlayUI;
     private GameObject player;
     private bool gameOver = false;
-
-    [SerializeField] private int enemiesPerWave = 10;
     private int enemiesRemaining;
     private int waveNumber = 1;
-
     private int playerScore = 0;
-
-
 
     void Start()
     {
-        Debug.Log($"Wave #{waveNumber}");
-
         player = GameObject.FindGameObjectWithTag("Player");
-
         enemiesRemaining = enemiesPerWave;
         
         // get a handle on the the GameOver screen GameObject
         gameOverlayUI = FindObjectOfType<Canvas>().transform.GetChild(0).gameObject;
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        isGameOver();
+        IsGameOver();
     }
 
-    private void isGameOver()
+    private void IsGameOver()
     {
         if(player.GetComponent<PlayerHealth>().CurrentHealth <= 0)
         {
@@ -117,13 +108,10 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(5.0f); // TODO reduce time between enemy waves?
         // play a sound for player to announce next wave
         enemiesRemaining = enemiesPerWave + waveNumber;
-        Debug.Log($"Enemy count: {enemiesRemaining}");
-
-
+       //Debug.Log($"Enemy count: {enemiesRemaining}");
         gameObject.GetComponent<AudioSource>().pitch *= 1.01f; // increase pitch by 1% each wave
-        
         waveNumber++;
-        Debug.Log($"Wave #{waveNumber}");
+        //Debug.Log($"Wave #{waveNumber}");
 
         EnableSpawning();
     }

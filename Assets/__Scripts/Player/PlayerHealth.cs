@@ -5,21 +5,16 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int startHealth = 1;
+    public int CurrentHealth { get { return currentHealth; } }
+
     private int currentHealth { get; set; }
-
-    [SerializeField] private TextMeshProUGUI healthText;
-
     private CameraShake cameraShake;
 
-
-
-    public int CurrentHealth { get { return currentHealth; } }
+    [SerializeField] private int startHealth = 1;
+    [SerializeField] private TextMeshProUGUI healthText;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-
         var enemy = collision.GetComponent<Enemy>();
         if(enemy && FindObjectOfType<PlayerMovementController>().Dash != true)
         {
@@ -31,7 +26,6 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         currentHealth = startHealth;
