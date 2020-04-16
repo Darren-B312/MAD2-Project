@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour
                 FindObjectOfType<SoundController>().PlayEnemyScreamSound();
                 FindObjectOfType<SoundController>().PlayEnemyDeathSound();
 
+                FindObjectOfType<PlayerHealth>().Heal();
             }
             Destroy(gameObject); 
         }

@@ -33,4 +33,14 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = startHealth;
         cameraShake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<CameraShake>();
     }
+
+    public void Heal()
+    {
+        if (currentHealth < 10)
+        {
+            currentHealth += 1;
+            healthText.text = $"HP: {currentHealth * 10}%";
+
+        }
+    }
 }
