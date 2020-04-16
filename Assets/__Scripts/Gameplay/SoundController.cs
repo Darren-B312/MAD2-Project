@@ -22,6 +22,8 @@ public class SoundController : MonoBehaviour
 
     private AudioClip[] playerShootSounds;
 
+    private AudioClip menuButtonSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,13 @@ public class SoundController : MonoBehaviour
 
         playerDashSounds = Resources.LoadAll<AudioClip>("Audio/PlayerDashSounds");
         playerDashSoundsCount = playerDashSounds.Length;
+
+        menuButtonSound = Resources.Load<AudioClip>("Audio/sfx_menu_move3");
+    }
+
+    public void PlayMenuButtonSound()
+    {
+        audioSource.PlayOneShot(menuButtonSound);
     }
 
     public void PlayEnemyDeathSound()

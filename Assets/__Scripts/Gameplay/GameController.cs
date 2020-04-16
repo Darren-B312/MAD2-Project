@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Audio;
 
 public class GameController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private int enemiesPerWave = 10;
+    [SerializeField] private AudioMixer audioMixer;
 
     private GameObject gameOverlayUI;
     private GameObject player;
@@ -25,6 +27,7 @@ public class GameController : MonoBehaviour
         
         // get a handle on the the GameOver screen GameObject
         gameOverlayUI = FindObjectOfType<Canvas>().transform.GetChild(0).gameObject;
+
     }
 
     void Update()

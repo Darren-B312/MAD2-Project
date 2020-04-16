@@ -15,8 +15,18 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private int damageValue = 1;
     [SerializeField] private int scoreValue = 1;
-
     [SerializeField] private GameObject explosionFX;
+
+    private GameObject VFXParent;
+
+    void Start()
+    {
+        VFXParent = GameObject.Find("VFX");
+        if(!VFXParent)
+        {
+            VFXParent = new GameObject("VFX");
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -27,8 +37,7 @@ public class Enemy : MonoBehaviour
         {
             if(FindObjectOfType<PlayerMovementController>().Dash == true)
             {
-                GameObject explosion = Instantiate(explosionFX, transform.position, transform.rotation);
-                Destroy(explosion, 2f);
+
 
                 PublishEnemyKilledByDashEvent();
                 FindObjectOfType<SoundController>().PlayEnemyScreamSound();
@@ -36,6 +45,9 @@ public class Enemy : MonoBehaviour
 
                 FindObjectOfType<PlayerHealth>().Heal();
             }
+
+            EnemyExpload();
+
             Destroy(gameObject); 
         }
 
@@ -43,8 +55,7 @@ public class Enemy : MonoBehaviour
         {
             FindObjectOfType<SoundController>().PlayEnemyDeathSound();
 
-            GameObject explosion = Instantiate(explosionFX, transform.position, transform.rotation);
-            Destroy(explosion, 2f);
+            EnemyExpload();
 
             Destroy(bullet.gameObject);
             PublishEnemyKilledEvent();
@@ -65,6 +76,12 @@ public class Enemy : MonoBehaviour
     private void PublishEnemyKilledByDashEvent()
     {
         EnemyKilledByDashEvent?.Invoke(this);
+    }
+
+    private void EnemyExpload()
+    {
+        GameObject explosion = Instantiate(explosionFX, transform.position, transform.rotation, VFXParent.transform);
+        Destroy(explosion, 2f);
     }
 
 }
