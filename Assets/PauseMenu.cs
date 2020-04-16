@@ -32,6 +32,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        FindObjectOfType<GameController>().GetComponent<AudioSource>().Stop();
         pauseMenuPanel.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
@@ -39,6 +40,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        FindObjectOfType<GameController>().GetComponent<AudioSource>().Play();
         pauseMenuPanel.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;

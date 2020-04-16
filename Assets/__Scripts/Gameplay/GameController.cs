@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private int enemiesPerWave = 10;
     [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private GameObject gameOverUI;
 
     private GameObject gameOverlayUI;
     private GameObject player;
@@ -49,12 +50,15 @@ public class GameController : MonoBehaviour
 
     private void EndGame()
     {
+        gameOverUI.SetActive(true);
 
         FindObjectOfType<SpawnController>().GetComponent<SpawnController>().DisableSpawning(); //stop enemy spawning
 
         FindObjectOfType<GameController>().GetComponent<AudioSource>().Stop(); // stop gameplay music
 
         FindObjectOfType<SoundController>().PlayGameOverSound(); // play game over sound
+
+        FindObjectOfType<SoundController>().PlayMenuMusic();
 
         gameOverlayUI.SetActive(true); // show game over screen
 
