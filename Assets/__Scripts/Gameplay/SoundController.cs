@@ -25,6 +25,8 @@ public class SoundController : MonoBehaviour
 
     private AudioClip menuButtonSound;
 
+    private AudioClip gameOverSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +50,13 @@ public class SoundController : MonoBehaviour
         playerDashReadySound = Resources.Load<AudioClip>("Audio/sfx_sounds_powerup6");
 
         menuButtonSound = Resources.Load<AudioClip>("Audio/sfx_menu_move3");
+
+        gameOverSound = Resources.Load<AudioClip>("Audio/GameOver");
+    }
+
+    public void PlayGameOverSound()
+    {
+        audioSource.PlayOneShot(gameOverSound);
     }
 
     public void PlayMenuButtonSound()

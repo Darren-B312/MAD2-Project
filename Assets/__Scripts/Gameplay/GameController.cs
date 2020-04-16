@@ -49,6 +49,13 @@ public class GameController : MonoBehaviour
 
     private void EndGame()
     {
+
+        FindObjectOfType<SpawnController>().GetComponent<SpawnController>().DisableSpawning(); //stop enemy spawning
+
+        FindObjectOfType<GameController>().GetComponent<AudioSource>().Stop(); // stop gameplay music
+
+        FindObjectOfType<SoundController>().PlayGameOverSound(); // play game over sound
+
         gameOverlayUI.SetActive(true); // show game over screen
 
         // 2. make player invisible
