@@ -653,8 +653,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fb552e09116177b4685e6cd3356b083a, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
+  m_PlayOnAwake: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -749,7 +749,7 @@ GameObject:
   - component: {fileID: 587136735}
   - component: {fileID: 587136734}
   - component: {fileID: 587136733}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1729,7 +1729,7 @@ RectTransform:
   - {fileID: 879666102}
   - {fileID: 2134487031}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2445,7 +2445,7 @@ Transform:
   - {fileID: 701522408}
   - {fileID: 320000489}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1781141503
 MonoBehaviour:
@@ -2459,7 +2459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3115aedec87d7864f9b6a3181ed8d7ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 6428750372539369954, guid: 232e368e9c5428344a6673bdda0d896f,
+  enemyPrefab: {fileID: 5039136022086926072, guid: 232e368e9c5428344a6673bdda0d896f,
     type: 3}
   spawnDelay: 0.5
   spawnInterval: 1
@@ -2900,7 +2900,7 @@ PrefabInstance:
     - target: {fileID: 5969524668684806030, guid: d533ce8d420a0f544abfd7c58bc269ca,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5969524668684806030, guid: d533ce8d420a0f544abfd7c58bc269ca,
         type: 3}
