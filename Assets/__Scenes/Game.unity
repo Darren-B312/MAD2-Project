@@ -786,7 +786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 2134487032}
-  enemiesPerWave: 10
+  enemiesPerWave: 5
   audioMixer: {fileID: 24100000, guid: 547e447c68b1b504d800b99b9b07e441, type: 2}
   gameOverUI: {fileID: 1497698887}
 --- !u!4 &549391645

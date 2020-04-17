@@ -123,7 +123,8 @@ public class GameController : MonoBehaviour
         // play a sound for player to announce next wave
         enemiesRemaining = enemiesPerWave + waveNumber;
        //Debug.Log($"Enemy count: {enemiesRemaining}");
-        gameObject.GetComponent<AudioSource>().pitch *= 1.01f; // increase pitch by 1% each wave
+        gameObject.GetComponent<AudioSource>().pitch *= 1.005f; // increase pitch by 0.5% each wave
+        Debug.Log(gameObject.GetComponent<AudioSource>().pitch);
         waveNumber++;
         Debug.Log($"Wave #{waveNumber}");
 

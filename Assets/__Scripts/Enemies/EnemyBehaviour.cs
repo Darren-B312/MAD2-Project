@@ -11,9 +11,8 @@ public class EnemyBehaviour : MonoBehaviour
     { 
  
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        speed += FindObjectOfType<GameController>().WaveNumer;
-        Debug.Log($"Speed: {speed}");
-
+        speed += (FindObjectOfType<GameController>().WaveNumer * 0.25f);
+        //Debug.Log($"Speed: {speed}");
     }
 
     void Update()
