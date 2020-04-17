@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public int WaveNumer { get { return waveNumber; } }
 
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private int enemiesPerWave = 10;
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private GameObject gameOverUI;
@@ -101,7 +102,7 @@ public class GameController : MonoBehaviour
     private void UpdateScore()
     {
         //Debug.Log("Score: " + playerScore);
-        scoreText.text = $"Score: {playerScore}";
+        scoreText.text = $"SCORE: {playerScore}";
     }
 
     private void SpawnController_OnEnemySpawnedEvent()
@@ -124,11 +125,11 @@ public class GameController : MonoBehaviour
         enemiesRemaining = enemiesPerWave + waveNumber;
        //Debug.Log($"Enemy count: {enemiesRemaining}");
         gameObject.GetComponent<AudioSource>().pitch *= 1.005f; // increase pitch by 0.5% each wave
-        Debug.Log(gameObject.GetComponent<AudioSource>().pitch);
+        //Debug.Log(gameObject.GetComponent<AudioSource>().pitch);
         waveNumber++;
-        Debug.Log($"Wave #{waveNumber}");
-
-        EnableSpawning();
+        //Debug.Log($"Wave #{waveNumber}");
+        waveText.text = $"WAVE: {waveNumber}";
+    EnableSpawning();
     }
 
     private void DisableSpawning()

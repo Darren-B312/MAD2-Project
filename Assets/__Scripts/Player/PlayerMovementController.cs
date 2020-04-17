@@ -66,7 +66,7 @@ public class PlayerMovementController : MonoBehaviour
             dashCD -= Time.deltaTime;
             //Debug.Log(dashCD);
             var dashpercent = 100 - ((dashCD / cooldown) * 100); // invert percentage for style on UI so it can charge from 0 to 100%
-            cooldownText.text = $"Boost: {dashpercent:0}%";
+            cooldownText.text = $"BOOST: {dashpercent:0}%";
 
             if(dashCD <= 0)
             {
@@ -76,7 +76,7 @@ public class PlayerMovementController : MonoBehaviour
 
         if (dashCD <= 0)
         {
-            cooldownText.text = $"Boost: 100%";
+            cooldownText.text = $"BOOST: READY";
             dashReady = true;
         }
 
