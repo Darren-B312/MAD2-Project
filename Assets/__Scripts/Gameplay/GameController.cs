@@ -96,13 +96,13 @@ public class GameController : MonoBehaviour
 
     private void OnEnemyDashKilledEvent(Enemy enemy)
     {
-        playerScore += enemy.ScoreValue * waveNumber * 10;
+        playerScore += enemy.ScoreValue * waveNumber * 100;
         UpdateScore();
     }
 
     private void OnEnemyKilledEvent(Enemy enemy)
     {
-        playerScore += enemy.ScoreValue * waveNumber;
+        playerScore += enemy.ScoreValue * waveNumber * 10;
         UpdateScore();
     }
     private void UpdateScore()
@@ -135,7 +135,10 @@ public class GameController : MonoBehaviour
         waveNumber++;
         //Debug.Log($"Wave #{waveNumber}");
         waveText.text = $"WAVE: {waveNumber}";
-    EnableSpawning();
+        FindObjectOfType<SoundController>().PlayNextWaveSound();
+
+
+        EnableSpawning();
     }
 
     private void DisableSpawning()

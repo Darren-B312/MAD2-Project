@@ -31,6 +31,8 @@ public class SoundController : MonoBehaviour
 
     private AudioClip lowHealthAlarm;
 
+    private AudioClip nextWaveSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +63,13 @@ public class SoundController : MonoBehaviour
 
         lowHealthAlarm = Resources.Load<AudioClip>("Audio/sfx_alarm_loop5");
 
+        nextWaveSound = Resources.Load<AudioClip>("Audio/sfx_sound_poweron");
+
+    }
+
+    public void PlayNextWaveSound()
+    {
+        audioSource.PlayOneShot(nextWaveSound);
     }
 
     public void PlayGameOverSound()
