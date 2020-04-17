@@ -37,7 +37,7 @@ public class PlayerMovementController : MonoBehaviour
         float hMovement = Input.GetAxis("Horizontal");
 
 
-        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.Space) && hMovement != 0 && dashReady))
+        if (((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.Space)) && hMovement != 0 && dashReady))
         {
             FindObjectOfType<SoundController>().PlayPlayerDashSound();
 

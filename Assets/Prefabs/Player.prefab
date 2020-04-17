@@ -160,12 +160,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cc80516c448b284a8dc4de6993f2c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownText: {fileID: 0}
   vSpeed: 12.5
   hSpeed: 10
   dashFactor: 5
   startDashTime: 0.1
   cooldown: 3
+  cooldownText: {fileID: 0}
 --- !u!114 &5676678843456436266
 MonoBehaviour:
   m_ObjectHideFlags: 0
