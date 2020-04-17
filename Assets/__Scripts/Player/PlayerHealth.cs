@@ -17,11 +17,12 @@ public class PlayerHealth : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var enemy = collision.GetComponent<Enemy>();
-        if(enemy && FindObjectOfType<PlayerMovementController>().Dash != true)
+
+        if(enemy && FindObjectOfType<PlayerMovementController>().Dash != true) // player hit an enemy while not dashing I.e. normal enemy collision
         {
             FindObjectOfType<SoundController>().PlayPlayerDamageSound();
 
-            cameraShake.Shake();
+            cameraShake.Shake(); // shake the camera when player takes damage
             currentHealth -= enemy.DamageValue;
             //Debug.Log($"Player Health: = {currentHealth}");
             healthText.text = $"HP: {currentHealth*10}%";

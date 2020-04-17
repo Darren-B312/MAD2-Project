@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-
     public static bool isPaused = false;
     public GameObject pauseMenuPanel;
 
     void Update()
     {
+        // if player hits escape -> show pause menu, escape again, hide pause menu
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(isPaused)
@@ -37,7 +34,7 @@ public class PauseMenu : MonoBehaviour
 
         FindObjectOfType<GameController>().GetComponent<AudioSource>().Stop();
         pauseMenuPanel.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 0f; // stop time when pause menu is active
         isPaused = true;
     }
 

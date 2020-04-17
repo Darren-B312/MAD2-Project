@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+// Encapsulate all Ememy state/behaviour
 public class Enemy : MonoBehaviour
 {
     public int DamageValue { get { return damageValue; } }
@@ -17,12 +16,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int scoreValue = 1;
     [SerializeField] private GameObject explosionFX;
 
-    private GameObject VFXParent;
+    private GameObject VFXParent; // parent object for all particle systems to keep hierarchy organised
 
     void Start()
     {
         VFXParent = GameObject.Find("VFX");
-        if(!VFXParent)
+        if (!VFXParent)
         {
             VFXParent = new GameObject("VFX");
         }
@@ -33,17 +32,16 @@ public class Enemy : MonoBehaviour
         var player = collision.GetComponent<PlayerMovementController>();
         var bullet = collision.GetComponent<Projectile>();
 
-        if (player) 
+        if (player) // if enemy hits a player
         {
-            if(FindObjectOfType<PlayerMovementController>().Dash == true)
+            if (FindObjectOfType<PlayerMovementController>().Dash == true) // & if enemy was dashing during collision
             {
-
-
                 PublishEnemyKilledByDashEvent();
-                FindObjectOfType<SoundController>().PlayEnemyScreamSound();
+
+                FindObjectOfType<SoundController>().PlayEnemyScreamSound(); // play extra death sound for dash kill emphasis
                 FindObjectOfType<SoundController>().PlayEnemyDeathSound();
 
-                FindObjectOfType<PlayerHealth>().Heal();
+                FindObjectOfType<PlayerHealth>().Heal(); // Heal the player
             }
 
             EnemyExpload();
@@ -51,7 +49,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject); 
         }
 
-        if (bullet) // Enemy was hit by a butllet -> dies
+        if (bullet) // if enemy hits a bullet
         {
             FindObjectOfType<SoundController>().PlayEnemyDeathSound();
 
@@ -63,7 +61,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnBecameInvisible()
+    private void OnBecameInvisible() 
     {
         Destroy(gameObject);
     }
@@ -80,6 +78,7 @@ public class Enemy : MonoBehaviour
 
     private void EnemyExpload()
     {
+        // play particle system explosion
         GameObject explosion = Instantiate(explosionFX, transform.position, transform.rotation, VFXParent.transform);
         Destroy(explosion, 2f);
     }

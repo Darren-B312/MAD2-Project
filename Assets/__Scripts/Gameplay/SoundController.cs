@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+// Manage loading & playing of all SFX (exluding music)
+// I learned how to play random sounds from a collection, partly from this video - https://www.youtube.com/watch?v=r5VrBu_FaPw
 public class SoundController : MonoBehaviour
 {
     public static SoundController soundController;
-    //https://www.youtube.com/watch?v=r5VrBu_FaPw
+
     private AudioSource audioSource;
 
     private AudioClip[] enemyDeathSounds;
@@ -19,18 +19,12 @@ public class SoundController : MonoBehaviour
 
     private AudioClip[] playerDashSounds;
     int playerDashSoundsCount;
-    private AudioClip playerDashReadySound;
 
     private AudioClip[] playerShootSounds;
-
+    private AudioClip playerDashReadySound;
     private AudioClip menuButtonSound;
-
     private AudioClip gameOverSound;
-
     private AudioClip menuMusic;
-
-    private AudioClip lowHealthAlarm;
-
     private AudioClip nextWaveSound;
 
     // Start is called before the first frame update
@@ -39,8 +33,8 @@ public class SoundController : MonoBehaviour
         soundController = this;
         audioSource = GetComponent<AudioSource>();
 
-        enemyDeathSounds = Resources.LoadAll<AudioClip>("Audio/EnemyDeathSounds");
-        enemyDeathSoundsCount = enemyDeathSounds.Length; // get the size of the audio clip array once and use it later for random 
+        enemyDeathSounds = Resources.LoadAll<AudioClip>("Audio/EnemyDeathSounds"); // get all clips from a folder and store them in an array of type AudioClip
+        enemyDeathSoundsCount = enemyDeathSounds.Length; // get the size of the audio clip array once @load time and use it later for random 
 
         enemyScreamSounds = Resources.LoadAll<AudioClip>("Audio/EnemyScreamSounds");
         enemyScreamSoundsCount = enemyScreamSounds.Length;
@@ -48,23 +42,15 @@ public class SoundController : MonoBehaviour
         playerDamageSounds = Resources.LoadAll<AudioClip>("Audio/PlayerDamageSounds");
         playerDamageSoundsCount = playerDamageSounds.Length;
 
-        playerShootSounds = Resources.LoadAll<AudioClip>("Audio/PlayerShootSounds");
-
         playerDashSounds = Resources.LoadAll<AudioClip>("Audio/PlayerDashSounds");
         playerDashSoundsCount = playerDashSounds.Length;
 
+        playerShootSounds = Resources.LoadAll<AudioClip>("Audio/PlayerShootSounds");
         playerDashReadySound = Resources.Load<AudioClip>("Audio/sfx_sounds_powerup6");
-
         menuButtonSound = Resources.Load<AudioClip>("Audio/sfx_menu_move3");
-
         gameOverSound = Resources.Load<AudioClip>("Audio/GameOver");
-
         menuMusic = Resources.Load<AudioClip>("Audio/Blipotron");
-
-        lowHealthAlarm = Resources.Load<AudioClip>("Audio/sfx_alarm_loop5");
-
         nextWaveSound = Resources.Load<AudioClip>("Audio/sfx_sound_poweron");
-
     }
 
     public void PlayNextWaveSound()
@@ -84,6 +70,7 @@ public class SoundController : MonoBehaviour
 
     public void PlayEnemyDeathSound()
     {
+        // pick a random sound from the array to play (for flavoured/varied gameplay E.g. different explosion sound each time an enemy dies)
         audioSource.PlayOneShot(enemyDeathSounds[Random.Range(0, enemyDeathSoundsCount)]);
     }
 

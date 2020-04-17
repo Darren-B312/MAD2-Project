@@ -37,28 +37,28 @@ public class PlayerMovementController : MonoBehaviour
         float hMovement = Input.GetAxis("Horizontal");
 
 
+        // if LeftShit or Space is pressed while dash is not on cooldown
         if (((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.Space)) && hMovement != 0 && dashReady))
         {
             FindObjectOfType<SoundController>().PlayPlayerDashSound();
 
             Dash = true;
-            dashTime = startDashTime;
+            dashTime = startDashTime; // init how long a dash lasts for
 
-            dashReady = false;
+            dashReady = false; // stop player from being able to spam dash
             dashCD = cooldown;
-            //nextDashTime = Time.time + dashCooldown;  // https://www.youtube.com/watch?v=NX8cX3osMFc
         }
 
-        if (Dash)
+        if (Dash) //if player is currently dashing, pass their h/v movements to function to be increased
         {
             dashMovement(hMovement, vMovement);
         }
         else
         {
-            rb.velocity = new Vector2(hMovement * hSpeed, vMovement * vSpeed);
+            rb.velocity = new Vector2(hMovement * hSpeed, vMovement * vSpeed); // else normal movement 
         }
 
-        sr.flipY = flipSprite(hMovement, vMovement);
+        sr.flipY = flipSprite(hMovement, vMovement); // flip which way the sprite is facing based on movement
 
 
         if(!dashReady)
@@ -83,7 +83,7 @@ public class PlayerMovementController : MonoBehaviour
         clampPosition();
     }
 
-    private void clampPosition()
+    private void clampPosition() // keep the player from escaping view
     {
         float yValue = Mathf.Clamp(rb.position.y, -4.75f, 4.75f);
         float xValue = Mathf.Clamp(rb.position.x, -8.9f, 8.9f);
@@ -95,13 +95,14 @@ public class PlayerMovementController : MonoBehaviour
     {
         dashTime -= Time.deltaTime;
 
-        if (dashTime <= 0)
+        if (dashTime <= 0) // if player is no longer dashing (dashtime has run out)
         {
             Dash = false;
         }
         else
         {
-            rb.velocity = new Vector2(hMovement * hSpeed * dashFactor, vMovement * vSpeed);
+            rb.velocity = new Vector2(hMovement * hSpeed * dashFactor, vMovement * vSpeed); // move the player by an increased dashfactor amount 
+            // Design Note: dashing only has an effect on your horizontal movement to try and make the player manouver around more to setup dash multikills
         }
     }
 

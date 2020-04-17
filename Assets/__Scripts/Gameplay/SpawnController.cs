@@ -1,15 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
+// Manage waves/spawning of enemies
 public class SpawnController : MonoBehaviour
 {
     public delegate void EnemySpawned();
     public static event EnemySpawned EnemySpawnedEvent;
 
     [SerializeField] private Enemy enemyPrefab;
-    [SerializeField] private float spawnDelay = 10f;
-    [SerializeField] private float spawnInterval = 50f;
+    [SerializeField] private float spawnDelay = 0.5f;
+    [SerializeField] private float spawnInterval = 1f;
 
     private IList<SpawnPoint> spawnPoints;
     private Stack<SpawnPoint> spawnStack;

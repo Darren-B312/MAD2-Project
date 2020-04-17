@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+// Visual representation of spawn points 
 public class SpawnPoint : MonoBehaviour
 {
     private void OnDrawGizmos()

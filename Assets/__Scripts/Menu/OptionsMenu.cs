@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -13,6 +11,6 @@ public class OptionsMenu : MonoBehaviour
     {
         //Debug.Log(volume);
         audioMixer.SetFloat("Volume", volume);
-        volumeText.text = $"Volume: {((volume + 80) / 80)*100:0}%";
+        volumeText.text = $"Volume: {((volume + 80) / 80)*100:0}%"; // convert -80 to 0 dB scale to a percentage for UI
     }
 }
