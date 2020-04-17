@@ -6,8 +6,10 @@ public class PlayerWeaponController : MonoBehaviour
 {
     [SerializeField] private Projectile bulletPrefab;
     [SerializeField] private float bulletSpeed = 50f;
+    [SerializeField] private float fireRate = 1.0f;
 
     private GameObject bulletParent;
+    private float nextFireTime;
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +24,11 @@ public class PlayerWeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) && Time.time > nextFireTime)
         {
             Fire(1);
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && Time.time > nextFireTime)
         {
             Fire(2);
         }
@@ -34,6 +36,8 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void Fire(int direction)
     {
+        nextFireTime = Time.time + fireRate;
+
         FindObjectOfType<SoundController>().PlayPlayerShootSound();
 
         Projectile bullet = Instantiate(bulletPrefab, bulletParent.transform);

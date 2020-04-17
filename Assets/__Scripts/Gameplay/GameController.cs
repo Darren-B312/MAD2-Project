@@ -54,6 +54,9 @@ public class GameController : MonoBehaviour
 
     private void EndGame()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         gameOverUI.SetActive(true);
 
         FindObjectOfType<SpawnController>().GetComponent<SpawnController>().DisableSpawning(); //stop enemy spawning
