@@ -32,6 +32,9 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         FindObjectOfType<GameController>().GetComponent<AudioSource>().Stop();
         pauseMenuPanel.SetActive(true);
         Time.timeScale = 0f;
@@ -40,6 +43,9 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         FindObjectOfType<GameController>().GetComponent<AudioSource>().Play();
         pauseMenuPanel.SetActive(false);
         Time.timeScale = 1f;
