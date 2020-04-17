@@ -29,6 +29,8 @@ public class SoundController : MonoBehaviour
 
     private AudioClip menuMusic;
 
+    private AudioClip lowHealthAlarm;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +58,9 @@ public class SoundController : MonoBehaviour
         gameOverSound = Resources.Load<AudioClip>("Audio/GameOver");
 
         menuMusic = Resources.Load<AudioClip>("Audio/Blipotron");
+
+        lowHealthAlarm = Resources.Load<AudioClip>("Audio/sfx_alarm_loop5");
+
     }
 
     public void PlayGameOverSound()

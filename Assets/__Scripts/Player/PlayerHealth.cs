@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int startHealth = 1;
     [SerializeField] private TextMeshProUGUI healthText;
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var enemy = collision.GetComponent<Enemy>();
@@ -33,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = startHealth;
         cameraShake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<CameraShake>();
     }
+
 
     public void Heal()
     {
